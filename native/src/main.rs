@@ -275,13 +275,24 @@ struct Config {
     smoke_seconds: Option<u64>,
 }
 
+/// An installed copy keeps the service beside the executable; a build from source does not.
+fn installed_root(exe: &Path) -> Option<PathBuf> {
+    let root = exe.parent()?;
+    root.join("src/lemfolio").is_dir().then(|| root.to_path_buf())
+}
+
 impl Config {
     fn parse() -> Result<Self, String> {
         let mut config = Self {
-            root: PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-                .parent()
-                .unwrap()
-                .into(),
+            root: std::env::current_exe()
+                .ok()
+                .and_then(|exe| installed_root(&exe))
+                .unwrap_or_else(|| {
+                    PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+                        .parent()
+                        .unwrap()
+                        .into()
+                }),
             port: 8765,
             data: None,
             smoke_seconds: None,
@@ -600,11 +611,16 @@ impl Backend {
                 return self.wait_ready();
             }
         }
-        let python = self.config.root.join(if cfg!(windows) {
-            ".venv/Scripts/python.exe"
+        let bundled = self.config.root.join("runtime/python.exe");
+        let python = if bundled.is_file() {
+            bundled
         } else {
-            ".venv/bin/python"
-        });
+            self.config.root.join(if cfg!(windows) {
+                ".venv/Scripts/python.exe"
+            } else {
+                ".venv/bin/python"
+            })
+        };
         if !python.is_file() {
             return Err(
                 "Project Python environment missing. Run the Lemfolio setup script first.".into(),
@@ -1480,6 +1496,18 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn only_an_installed_layout_is_taken_for_the_root() {
+        use std::fs;
+        let root = std::env::temp_dir().join(format!("lemfolio-root-{}", std::process::id()));
+        fs::create_dir_all(&root).unwrap();
+        let exe = root.join("lemfolio-desktop.exe");
+        assert_eq!(super::installed_root(&exe), None);
+        fs::create_dir_all(root.join("src/lemfolio")).unwrap();
+        assert_eq!(super::installed_root(&exe), Some(root.clone()));
+        fs::remove_dir_all(&root).unwrap();
+    }
+
     /// Every message the window can show has English, with the same placeholders.
     #[test]
     fn all_messages_have_english() {

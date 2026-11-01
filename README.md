@@ -8,7 +8,15 @@ Lemfolio 是运行在本机的论文工作台。源码、PDF 和研究助手在�
 
 ![论文工作台与研究助手](docs/images/setup/zh-03-claude-graph.png)
 
-## 配置
+## 直接安装
+
+从 [Releases](https://github.com/h1n4k0/lemfolio/releases/latest) 下载 `Lemfolio-<版本>-Setup-x64.exe` 并运行。不需要管理员权限，也不用装 Python、Node.js 或 Rust。安装时可以选择目录，项目数据保存在该目录的 `data` 文件夹里，卸载时会保留。
+
+安装包还没有代码签名，Windows 可能提示“已保护你的电脑”。确认文件来自上面的 Releases 页面后，点“更多信息”，再点“仍要运行”。
+
+Git、Docker Desktop 和命令行 agent 仍需自己安装（见下表）。启动 Docker Desktop 后，从开始菜单运行一次 “Build TeX image”，才能编译 LaTeX；登录 CLI 和之后的用法从第 3 步开始看。
+
+## 从源码配置
 
 ### 1. 安装依赖
 

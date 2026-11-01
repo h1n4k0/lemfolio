@@ -128,11 +128,13 @@ class Compiler:
         os.replace(temporary, path)
 
     def status(self):
+        # an installed copy has no scripts/ and builds the image from its Start menu entry
+        build = "Build TeX image from the Lemfolio Start menu entry" if (Path(__file__).resolve().parents[2] / "build-tex-image.cmd").is_file() else "run scripts/setup.ps1 -BuildTex"
         try:
             result = subprocess.run(["docker", "image", "inspect", self.image, "--format", "{{.Id}}"], capture_output=True, timeout=10, text=True)
-            return {"available": result.returncode == 0, "image": self.image, "image_id": result.stdout.strip() if result.returncode == 0 else None, "isolation": "Docker, network=none, read-only root, no shell escape", "setup": "Run scripts/setup.ps1 -BuildTex if the image is missing."}
+            return {"available": result.returncode == 0, "image": self.image, "image_id": result.stdout.strip() if result.returncode == 0 else None, "isolation": "Docker, network=none, read-only root, no shell escape", "setup": f"{build[0].upper()}{build[1:]} if the image is missing."}
         except (OSError, subprocess.TimeoutExpired):
-            return {"available": False, "image": self.image, "setup": "Start Docker Desktop, then run scripts/setup.ps1 -BuildTex."}
+            return {"available": False, "image": self.image, "setup": f"Start Docker Desktop, then {build[0].lower()}{build[1:]}."}
 
     @staticmethod
     def _identity(record):

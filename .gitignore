@@ -12,3 +12,4 @@ native/target/
 .test-builds/
 .test-data/
 *.log
+dist/

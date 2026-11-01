@@ -8,7 +8,15 @@ Lemfolio is a paper workbench that runs on your own computer. Source, PDF and re
 
 ![The paper workbench and research assistant](docs/images/setup/en-03-claude-graph.png)
 
-## Setup
+## Install
+
+Download `Lemfolio-<version>-Setup-x64.exe` from [Releases](https://github.com/h1n4k0/lemfolio/releases/latest) and run it. It needs no administrator rights, and no Python, Node.js or Rust. You choose the folder during setup; project data lives in its `data` folder and is kept when you uninstall.
+
+The installer is not code-signed yet, so Windows may show "Windows protected your PC". Once you have confirmed the file came from the Releases page above, choose "More info", then "Run anyway".
+
+You still install Git, Docker Desktop and a command-line agent yourself (see the table below). With Docker Desktop running, run "Build TeX image" from the Start menu once to enable LaTeX builds. For signing in to a CLI and using the app, continue from step 3.
+
+## Set up from source
 
 ### 1. Install the prerequisites
 
