@@ -1,0 +1,105 @@
+{
+  "doi": {
+    "status": "unavailable",
+    "identifier": "10.1103/PhysRevLett.103.150502",
+    "http_status": 429,
+    "error": "Metadata service did not return a usable record"
+  },
+  "arxiv": {
+    "status": "verified_metadata",
+    "identifier": "0811.3171",
+    "metadata": {
+      "title": "Quantum algorithm for solving linear systems of equations",
+      "authors": [
+        "Aram W. Harrow",
+        "Avinatan Hassidim",
+        "Seth Lloyd"
+      ],
+      "arxiv_id": "0811.3171v3",
+      "doi": "10.1103/PhysRevLett.103.150502",
+      "year": "2008",
+      "url": "https://arxiv.org/abs/0811.3171v3",
+      "abstract": "Solving linear systems of equations is a common problem that arises both on its own and as a subroutine in more complex problems: given a matrix A and a vector b, find a vector x such that Ax=b. We consider the case where one doesn't need to know the solution x itself, but rather an approximation of the expectation value of some operator associated with x, e.g., x'Mx for some matrix M. In this case, when A is sparse, N by N and has condition number kappa, classical algorithms can find x and estimate x'Mx in O(N sqrt(kappa)) time. Here, we exhibit a quantum algorithm for this task that runs in poly(log N, kappa) time, an exponential improvement over the best classical algorithm."
+    },
+    "provenance": {
+      "endpoint": "https://export.arxiv.org/api/query?id_list=0811.3171&max_results=1",
+      "retrieved_at": "2026-10-30T17:30:25.049323+00:00",
+      "sha256": "7f82fad442425f55503cd42d15a14bca1347eedb29f5cf5ab08b6a65f967fd45",
+      "source": "export.arxiv.org"
+    },
+    "cached": false,
+    "claim_support_verified": false,
+    "limitations": "Identifier and registry metadata only. Existence does not establish research quality, correctness, or support for a manuscript claim."
+  },
+  "search": {
+    "status": "ok",
+    "query": "Quantum algorithm for linear systems of equations",
+    "results": [
+      {
+        "title": "Quantum Algorithm for Linear Systems of Equations",
+        "authors": [
+          "Aram W. Harrow",
+          "Avinatan Hassidim",
+          "Seth Lloyd"
+        ],
+        "doi": "10.1103/physrevlett.103.150502",
+        "year": 2009,
+        "venue": "Physical Review Letters",
+        "type": "journal-article",
+        "url": "https://doi.org/10.1103/physrevlett.103.150502",
+        "publisher": "American Physical Society (APS)",
+        "score": 28.822275,
+        "claim_support_verified": false
+      },
+      {
+        "title": "Mod2VQLS: A Variational Quantum Algorithm for Solving Systems of Linear Equations Modulo 2",
+        "authors": [
+          "Willie Aboumrad",
+          "Dominic Widdows"
+        ],
+        "doi": "10.3390/app14020792",
+        "year": 2024,
+        "venue": "Applied Sciences",
+        "type": "journal-article",
+        "url": "https://doi.org/10.3390/app14020792",
+        "publisher": "MDPI AG",
+        "score": 28.741922,
+        "claim_support_verified": false
+      }
+    ],
+    "provenance": {
+      "endpoint": "https://api.crossref.org/works?query.bibliographic=Quantum+algorithm+for+linear+systems+of+equations&rows=2",
+      "retrieved_at": "2026-10-30T17:30:27.647151+00:00",
+      "sha256": "d26671fe1b36fe2615d63a0809198b3477066a4aa8363d676267551eadb05b69",
+      "source": "api.crossref.org"
+    },
+    "limitations": "Ranked registry metadata search, not a systematic literature review; relevance and claim support require source reading."
+  },
+  "doi_retry": {
+    "status": "verified_metadata",
+    "identifier": "10.1103/PhysRevLett.103.150502",
+    "metadata": {
+      "title": "Quantum Algorithm for Linear Systems of Equations",
+      "authors": [
+        "Aram W. Harrow",
+        "Avinatan Hassidim",
+        "Seth Lloyd"
+      ],
+      "doi": "10.1103/physrevlett.103.150502",
+      "year": 2009,
+      "venue": "Physical Review Letters",
+      "type": "journal-article",
+      "url": "https://doi.org/10.1103/physrevlett.103.150502",
+      "publisher": "American Physical Society (APS)"
+    },
+    "provenance": {
+      "endpoint": "https://api.crossref.org/works/10.1103%2FPhysRevLett.103.150502",
+      "retrieved_at": "2026-10-30T17:31:11.981811+00:00",
+      "sha256": "6e511f8869b1fbd3cfddabacc293a5e7284b5a44eab8920ced66871f3d1a9d9c",
+      "source": "api.crossref.org"
+    },
+    "cached": false,
+    "claim_support_verified": false,
+    "limitations": "Identifier and registry metadata only. Existence does not establish research quality, correctness, or support for a manuscript claim."
+  }
+}

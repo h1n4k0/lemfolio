@@ -1,0 +1,14 @@
+.venv/
+data/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.env
+reports/
+node_modules/
+target/
+native/target/
+.test-builds/
+.test-data/
+*.log

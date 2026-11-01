@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "description": "Two small, synthetic, fixed research-editing transport tasks. Not a scientific-ability benchmark.",
+  "tasks": [
+    {
+      "id": "cross-file-label-rename",
+      "intent": "Rename the equation label eq:sample-bound to eq:sum-identity and synchronize every reference across this paper. Preserve the mathematical expression and all other text. Make the smallest edits and return complete replacement contents only for files that change.",
+      "selection": {"path": "methods.tex", "start_line": 1, "end_line": 5},
+      "allowed_changed_files": ["methods.tex", "discussion.tex"],
+      "files": {
+        "main.tex": "\\documentclass{article}\n\\usepackage{amsmath}\n\\begin{document}\n\\input{methods}\n\\input{discussion}\n\\end{document}\n",
+        "methods.tex": "\\section{Method}\nThe following identity holds for positive integers.\n\\begin{equation}\\label{eq:sample-bound}\n\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}.\n\\end{equation}\n",
+        "discussion.tex": "\\section{Discussion}\nEquation~\\eqref{eq:sample-bound} is used without changing its assumptions.\n"
+      },
+      "expected_replacements": {"methods.tex": {"eq:sample-bound": "eq:sum-identity"}, "discussion.tex": {"eq:sample-bound": "eq:sum-identity"}}
+    },
+    {
+      "id": "missing-citation-key",
+      "intent": "Repair the undefined citation example2026 by using the matching bibliography entry already present in references.bib. This is a synthetic citation fixture, not a real publication. Do not invent, fetch, add or alter bibliography records. Preserve all other source text and return complete replacement contents only for files that change.",
+      "selection": {"path": "main.tex", "start_line": 3, "end_line": 5},
+      "allowed_changed_files": ["main.tex"],
+      "files": {
+        "main.tex": "\\documentclass{article}\n\\begin{document}\n\\section{Related Work}\nA synthetic test record is cited here~\\cite{example2026}.\n\\bibliographystyle{plain}\n\\bibliography{references}\n\\end{document}\n",
+        "references.bib": "@article{example2026existing,\n  title = {A Synthetic Paper for Citation Tests},\n  author = {Lemfolio Test},\n  journal = {Synthetic Fixtures},\n  year = {2026},\n  note = {Synthetic local evaluation fixture; not a real publication}\n}\n"
+      },
+      "expected_replacements": {"main.tex": {"example2026": "example2026existing"}}
+    }
+  ]
+}
